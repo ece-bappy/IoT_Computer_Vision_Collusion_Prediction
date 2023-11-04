@@ -46,7 +46,7 @@ cv2.startWindowThread()
 cap = cv2.VideoCapture(0)
 
 # The output will be written to output.avi
-out = cv2.VideoWriter("output.avi", cv2.VideoWriter_fourcc(*"MJPG"), 15.0, (640, 480))
+# out = cv2.VideoWriter("output.avi", cv2.VideoWriter_fourcc(*"MJPG"), 15.0, (640, 480))
 
 last_notification_time = 0  # Variable to keep track of the last notification time
 people_detection_start_time = (
@@ -137,12 +137,12 @@ while True:
             2,
         )
 
-    out.write(frame.astype("uint8"))
+    # out.write(frame.astype("uint8"))
     cv2.imshow("frame", frame)
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
 cap.release()
-out.release()
+# out.release()
 cv2.destroyAllWindows()
 cv2.waitKey(1)
