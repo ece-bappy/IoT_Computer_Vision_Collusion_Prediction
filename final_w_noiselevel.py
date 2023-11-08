@@ -36,7 +36,7 @@ hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
 cv2.startWindowThread()
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
@@ -86,7 +86,7 @@ try:
             1,
         )
 
-        remaining_time = 20 - (current_time - last_notification_time)
+        remaining_time = 40 - (current_time - last_notification_time)
         remaining_time = max(0, remaining_time)
 
         countdown_label = f"Next notification in: {int(remaining_time)}s"
@@ -109,11 +109,11 @@ try:
         rms = np.sqrt(np.mean(np.array(audio_data) ** 2))
         print(f"Current RMS: {rms:.2f} dB")
 
-        if 15 <= rms <= 25 and num_people >= 7:
+        if 9 <= rms <= 40 and num_people >= 3:
             if people_detection_start_time == 0:
                 people_detection_start_time = current_time
 
-            if current_time - people_detection_start_time >= 1 and remaining_time <= 0:
+            if current_time - people_detection_start_time >= 3 and remaining_time <= 0:
                 for _ in range(2):
                     cv2.imshow("frame", frame)
                     cv2.waitKey(100)
